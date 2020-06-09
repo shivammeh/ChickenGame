@@ -9,6 +9,14 @@
 	padding: 10px;
 }
 
+.chicken-selection{
+	display: inline-block;
+	width: 350px;
+	padding: 0;
+	list-style-type: none;
+	margin: 20px auto 0 auto;
+}
+
 .chicken-select label{
 	display: inline-block;
 	margin: 10px 0;
@@ -16,10 +24,21 @@
 	text-align: center;
 }
 
-.chicken-selection{
+.chicken-selection li{
 	display: inline-block;
-	width: 350px;
-	padding: 0;
-	list-style-type: none;
-	margin: 20px auto 0 auto;
+	float: left;
+	width: 33%;
+	text-align: center;
+	cursor: pointer;
+	border: 2px solid #eee;
+	padding: 10px 0;
+}
+
+.chicken-selection li.selected{
+	border: 2px solid #158cba;
+	-webkit-border-radius: 5px;
+	   -moz-border-radius: 5px;
+		 -o-border-radius: 5px;
+			border-radius: 5px;
+	border-radius: 5px;
 }
