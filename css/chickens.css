@@ -25,7 +25,6 @@
 }
 
 .chicken-selection li{
-	display: inline-block;
 	float: left;
 	width: 33%;
 	text-align: center;
