@@ -5,3 +5,8 @@ $(document).ready(function() {
         selectedChicken = $(this).data('chicken');
     });
 })
+
+$(document).ready(function(){
+    $('ul')
+})
+
