@@ -5,5 +5,3 @@ $(document).ready(function() {
         selectedChicken = $(this).data('chicken');
     });
 })
-
-
