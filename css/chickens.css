@@ -9,6 +9,16 @@
 	padding: 10px;
 }
 
+.game-name{
+	position: relative;
+	font-size: xx-large;
+	font-family: cursive;
+	left: 50%;
+	margin-left: -200px;
+	color: #ff6666;
+	padding: 10px;
+}
+
 .chicken-selection{
 	display: inline-block;
 	width: 350px;
