@@ -1,3 +1,4 @@
 # ChickenGame
 A game where a chicken will run away from farmers hunting it.
-Sounds about right
+
+# Created using: HTML, CSS, Javascript, JQuery, Bootstrap
