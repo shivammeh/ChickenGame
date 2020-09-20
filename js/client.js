@@ -1,3 +1,13 @@
+var currentGame = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 480;
+        this.canvas.height = 270;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+    }
+}
+
 $(document).ready(function() {
     /* Selects Chicken */
     $('ul.chicken-selection li').click(function() {
@@ -12,5 +22,6 @@ $(document).ready(function() {
         window.sessionStorage.setItem('name', $("#chicken-name").val());
         window.sessionStorage.setItem('chicken-type',selectedChicken);
         prompt.style.display = "none";
+        currentGame.start();
     })
 })
