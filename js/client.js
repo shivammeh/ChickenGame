@@ -48,16 +48,16 @@ var currentGame = {
         var myChicken;
         switch(window.sessionStorage.getItem('chicken-type')){
             case "1":
-                myChicken = new component(30, 30, "img/chicken/white-chicken.png", 10, 120, "image");
+                myChicken = new component(70, 60, "img/chicken/white-chicken.png", 10, 120, "image");
                 break;
             case "2":
-                myChicken = new component(30, 30, "img/chicken/red-chicken.png", 10, 120, "image");
+                myChicken = new component(70, 60, "img/chicken/red-chicken.png", 10, 120, "image");
                 break;
             case "3":
-                myChicken = new component(30, 30, "img/chicken/yellow-chicken.png", 10, 120, "image");
+                myChicken = new component(70, 60, "img/chicken/yellow-chicken.png", 10, 120, "image");
                 break;
             default:
-                myChicken = new component(30, 30, "img/chicken/white-chicken.png", 10, 120, "image");
+                myChicken = new component(70, 60, "img/chicken/white-chicken.png", 10, 120, "image");
         }
         return myChicken;
     },
