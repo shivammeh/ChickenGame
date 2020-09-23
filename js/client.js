@@ -38,6 +38,10 @@ var currentGame = {
         this.frameNo = 0;
         let myChicken = this.initializeGame();
         this.interval = setInterval(this.updateGameArea(myChicken), 20);
+        
+        window.addEventListener('keydown', function(event) {
+            const key = event.key; // "ArrowRight", "ArrowLeft", "ArrowUp", or "ArrowDown"
+        });
     },
 
     clear : function() {
@@ -63,9 +67,33 @@ var currentGame = {
     },
       
       updateGameArea : function(myChicken) {
-          currentGame.clear();
+          currentGame.clear(); 
+          document.onkeydown = checkKey(myChicken);     
           myChicken.newPos();
           myChicken.update();
+    },
+    
+    checkKey : function(e, myChicken) {
+        myChicken.speedX = 0;
+        myChicken.speedY = 0;  
+        e = e || window.event;
+    
+        if (e.keyCode == '38') {
+            // up arrow
+            myChicken.speedX = -1;
+        }
+        else if (e.keyCode == '40') {
+            // down arrow
+            myChicken.speedX = 1; 
+        }
+        else if (e.keyCode == '37') {
+        // left arrow
+            myChicken.speedY = -1; 
+        }
+        else if (e.keyCode == '39') {
+        // right arrow
+            myChicken.speedY = 1; 
+        }
     }
 }
 
