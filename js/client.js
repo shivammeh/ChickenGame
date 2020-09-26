@@ -19,12 +19,12 @@ var currentGame = {
             currentGame.key = false;
             currentGame.updateGameArea(myChicken, arrayOfFarmers);
         });
-        let numOffarmers = 0;
+        let numFarmers = 0;
         setInterval(() => {
-            var newFarmer = new farmer(100, 80, "./img/farmers/pitchfork_farmer.png", 400, Math.floor(Math.random()*270), numOffarmers);
+            var newFarmer = new farmer(70, 60, "./img/farmers/farmer_small.png", 400, Math.floor(Math.random()*270), numFarmers);
             newFarmer.update();
             arrayOfFarmers.push(newFarmer);
-            numOffarmers = numOffarmers + 1;
+            numFarmers = numFarmers + 1;
         }, 3000);
     },
     clear : function() {
