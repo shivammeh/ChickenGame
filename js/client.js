@@ -81,14 +81,13 @@ function component(width, height, color, x, y, type) {
          this.y += this.speedY;      
          this.checkEdges();  
     }
-
     this.checkEdges = function() {
-        // checks if chicken hits the top edge of canvas
+        // checks if component hits the top edge of canvas
         if (this.y < 0) {
             this.y = 0;
             return;
         }
-        // checks if chicken hits the bottom edge of canvas
+        // checks if component hits the bottom edge of canvas
         var bottomEdge = currentGame.canvas.height - this.height;
         if (this.y > bottomEdge) {
             this.y = bottomEdge;
