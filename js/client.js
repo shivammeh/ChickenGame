@@ -9,16 +9,23 @@ var currentGame = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         let myChicken = this.initializeGame();
-        currentGame.updateGameArea(myChicken);
-
+        var arrayOfFarmers = new Array();
+        currentGame.updateGameArea(myChicken, arrayOfFarmers);
         window.addEventListener('keydown', function(event) {
             currentGame.key = event.key; // "ArrowUp", or "ArrowDown"
-            currentGame.updateGameArea(myChicken);
+            currentGame.updateGameArea(myChicken, arrayOfFarmers);
         });
         window.addEventListener('keyup', function(event) {
             currentGame.key = false;
-            currentGame.updateGameArea(myChicken);
+            currentGame.updateGameArea(myChicken, arrayOfFarmers);
         });
+        let numOffarmers = 0;
+        setInterval(() => {
+            var newFarmer = new farmer(100, 80, "./img/farmers/pitchfork_farmer.png", 400, Math.floor(Math.random()*270), numOffarmers);
+            newFarmer.update();
+            arrayOfFarmers.push(newFarmer);
+            numOffarmers = numOffarmers + 1;
+        }, 3000);
     },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -27,21 +34,21 @@ var currentGame = {
         var myChicken;
         switch(window.sessionStorage.getItem('chicken-type')){
             case "1":
-                myChicken = new component(70, 60, "./img/chicken/white-chicken.png", 10, 120, "image");
+                myChicken = new chicken(70, 60, "./img/chicken/white-chicken.png", 10, 120);
                 break;
             case "2":
-                myChicken = new component(70, 60, "./img/chicken/red-chicken.png", 10, 120, "image");
+                myChicken = new chicken(70, 60, "./img/chicken/red-chicken.png", 10, 120);
                 break;
             case "3":
-                myChicken = new component(70, 60, "./img/chicken/yellow-chicken.png", 10, 120, "image");
+                myChicken = new chicken(70, 60, "./img/chicken/yellow-chicken.png", 10, 120);
                 break;
             default:
-                myChicken = new component(70, 60, "./img/chicken/white-chicken.png", 10, 120, "image");
+                myChicken = new chicken(70, 60, "./img/chicken/white-chicken.png", 10, 120);
         }
         return myChicken;
     },
       
-    updateGameArea : function(myChicken) {
+    updateGameArea : function(myChicken, arrayOfFarmers) {
         currentGame.clear();
         myChicken.speedX = 0;
         myChicken.speedY = 0;
@@ -49,15 +56,14 @@ var currentGame = {
         if (currentGame.key && currentGame.key == "ArrowDown") {myChicken.speedY = 3; }     
         myChicken.newPos();
         myChicken.update();
+        arrayOfFarmers.forEach(farmer => {
+            farmer.update();
+        });
     }
 }
-
-function component(width, height, color, x, y, type) {
-    this.type = type;
-    if (type == "image") {
-      this.image = new Image();
-      this.image.src = color;
-    }
+function chicken(width, height, imgSrc, x, y) {
+    this.image = new Image();
+    this.image.src = imgSrc;
     this.width = width;
     this.height = height;
     this.speedX = 0;
@@ -66,15 +72,47 @@ function component(width, height, color, x, y, type) {
     this.y = y;
     this.update = function() {
       ctx = currentGame.context;
-      if (type == "image") {
-        ctx.drawImage(this.image,
+      ctx.drawImage(this.image,
           this.x,
           this.y,
           this.width, this.height);
-      } else {
-        ctx.fillStyle = color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-      }
+    }
+    this.newPos = function() {
+         this.x += this.speedX;
+         this.y += this.speedY;      
+         this.checkEdges();  
+    }
+    this.checkEdges = function() {
+        // checks if component hits the top edge of canvas
+        if (this.y < 0) {
+            this.y = 0;
+            return;
+        }
+        // checks if component hits the bottom edge of canvas
+        var bottomEdge = currentGame.canvas.height - this.height;
+        if (this.y > bottomEdge) {
+            this.y = bottomEdge;
+            return;
+        }
+    }
+}
+
+function farmer(width, height, imgSrc, x, y, idOfFarmer) {
+    this.farmerId = idOfFarmer;
+    this.image = new Image();
+    this.image.src = imgSrc;
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;
+    this.x = x;
+    this.y = y;
+    this.update = function() {
+      ctx = currentGame.context;
+      ctx.drawImage(this.image,
+          this.x,
+          this.y,
+          this.width, this.height);
     }
     this.newPos = function() {
          this.x += this.speedX;
