@@ -3,7 +3,9 @@ var currentGame = {
     start : function() {
         this.canvas.width = 480;
         this.canvas.height = 270;
+        this.canvas.style = "background: url('./img/background/grass.png')"
         this.context = this.canvas.getContext("2d");
+        this.canvas.fillStyle;
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         let myChicken = this.initializeGame();
@@ -25,16 +27,16 @@ var currentGame = {
         var myChicken;
         switch(window.sessionStorage.getItem('chicken-type')){
             case "1":
-                myChicken = new component(70, 60, "img/chicken/white-chicken.png", 10, 120, "image");
+                myChicken = new component(70, 60, "./img/chicken/white-chicken.png", 10, 120, "image");
                 break;
             case "2":
-                myChicken = new component(70, 60, "img/chicken/red-chicken.png", 10, 120, "image");
+                myChicken = new component(70, 60, "./img/chicken/red-chicken.png", 10, 120, "image");
                 break;
             case "3":
-                myChicken = new component(70, 60, "img/chicken/yellow-chicken.png", 10, 120, "image");
+                myChicken = new component(70, 60, "./img/chicken/yellow-chicken.png", 10, 120, "image");
                 break;
             default:
-                myChicken = new component(70, 60, "img/chicken/white-chicken.png", 10, 120, "image");
+                myChicken = new component(70, 60, "./img/chicken/white-chicken.png", 10, 120, "image");
         }
         return myChicken;
     },
